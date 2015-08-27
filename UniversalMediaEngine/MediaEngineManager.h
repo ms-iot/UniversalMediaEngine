@@ -7,7 +7,7 @@ namespace UniversalMediaEngine
 
 class MediaEngineNotify;
 
-class MediaEngineManager
+class MediaEngineManager : public IMFMediaEngineNotify
 {
 public:
 	MediaEngineManager(UniversalMediaEngine::MediaEngine^ mediaEngine);
@@ -20,6 +20,7 @@ public:
 	ULONG STDMETHODCALLTYPE Release();
 
 	HRESULT Initialize();
+	HRESULT TearDown();
 
 	HRESULT PlayUrl(BSTR url);
 
@@ -30,12 +31,18 @@ public:
 	HRESULT GetVolume(double* pVolume);
 	HRESULT SetVolume(double volume);
 
+	HRESULT STDMETHODCALLTYPE EventNotify(
+		DWORD     event,
+		DWORD_PTR param1,
+		DWORD     param2
+		);
+
 private:
 	LONG m_cRef;
 	bool isInitialized;
 	ComPtr<IMFMediaEngine> spMediaEngine;
-	ComPtr<MediaEngineNotify> spMediaEngineNotify;
-	UniversalMediaEngine::MediaEngine^ mediaEngine;
+	//ComPtr<MediaEngineNotify> spMediaEngineNotify;
+	UniversalMediaEngine::MediaEngine^ mediaEngineComponent;
 
 	HRESULT checkInitialized();
 };

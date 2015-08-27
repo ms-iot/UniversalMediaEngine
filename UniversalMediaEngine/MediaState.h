@@ -6,10 +6,8 @@ namespace UniversalMediaEngine
 	{
 		Error,
 		Ended,
-		UnableToConnect,
 		Stopped,
 		Loading,
 		Playing,
-		Paused
 	};
 }

@@ -3,10 +3,12 @@
 #include "MediaEngineNotify.h"
 #include "MediaEngineManager.h"
 
+using namespace UniversalMediaEngine;
+using namespace Platform;
 
 MediaEngineManager::MediaEngineManager(UniversalMediaEngine::MediaEngine^ mediaEngine)
 {
-	spMediaEngineNotify = new MediaEngineNotify(mediaEngine);
+	mediaEngineComponent = mediaEngine;
 }
 
 HRESULT MediaEngineManager::QueryInterface(REFIID riid,
@@ -49,17 +51,21 @@ HRESULT MediaEngineManager::Initialize()
 	IMFMediaEngineClassFactory* mediaEngineFactory;
 	IMFAttributes* mediaEngineAttributes;
 
+	// If we are already initialized 
+	// then don't initialize again
 	if (isInitialized)
 		return S_FALSE;
 
+	// Startup the media foundation subsystem
 	CHR(MFStartup(MF_VERSION));
 
 	CHR(CoCreateInstance(CLSID_MFMediaEngineClassFactory, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&mediaEngineFactory)));
 
 	CHR(MFCreateAttributes(&mediaEngineAttributes, 1));
 
-	CHR(mediaEngineAttributes->SetUnknown(MF_MEDIA_ENGINE_CALLBACK, spMediaEngineNotify.Get()));
+	CHR(mediaEngineAttributes->SetUnknown(MF_MEDIA_ENGINE_CALLBACK, this));
 
+	// We only support audio since this component is designed for use in headless applications
 	CHR(mediaEngineAttributes->SetUINT32(MF_MEDIA_ENGINE_AUDIO_CATEGORY, AUDIO_STREAM_CATEGORY::AudioCategory_Media));
 
 	auto flags = MF_MEDIA_ENGINE_AUDIOONLY | MF_MEDIA_ENGINE_REAL_TIME_MODE;
@@ -69,6 +75,27 @@ HRESULT MediaEngineManager::Initialize()
 	CHR(spMediaEngine->SetAutoPlay(true));
 
 	isInitialized = true;
+
+End:
+	return hr;
+}
+
+HRESULT MediaEngineManager::TearDown()
+{
+	HRESULT hr = E_FAIL;
+
+	// If we are already initialized 
+	// then don't initialize again
+	if (!isInitialized)
+		return S_FALSE;
+
+	// release the managers reference to the parent object 
+	mediaEngineComponent = nullptr;
+
+	// Shutdown the media foundation subsystem
+	CHR(MFShutdown());
+
+	isInitialized = false;
 
 End:
 	return hr;
@@ -99,7 +126,13 @@ End:
 
 HRESULT MediaEngineManager::Stop()
 {
-	return E_NOTIMPL;
+	HRESULT hr = E_FAIL;
+	CHR(checkInitialized());
+
+	CHR(spMediaEngine->Shutdown());
+
+End:
+	return hr;
 }
 
 HRESULT MediaEngineManager::GetVolume(double* pVolume)
@@ -124,6 +157,27 @@ HRESULT MediaEngineManager::SetVolume(double volume)
 
 End:
 	return hr;
+}
+
+HRESULT MediaEngineManager::EventNotify(DWORD event, DWORD_PTR param1, DWORD param2)
+{
+	switch (event)
+	{
+	case MF_MEDIA_ENGINE_EVENT_LOADSTART:
+		mediaEngineComponent->TriggerMediaStateChanged(MediaState::Loading);
+		break;
+	case MF_MEDIA_ENGINE_EVENT_PLAYING:
+		mediaEngineComponent->TriggerMediaStateChanged(MediaState::Playing);
+		break;
+	case MF_MEDIA_ENGINE_EVENT_ENDED:
+		mediaEngineComponent->TriggerMediaStateChanged(MediaState::Ended);
+		break;
+	case MF_MEDIA_ENGINE_EVENT_ERROR:
+		mediaEngineComponent->TriggerMediaStateChanged(MediaState::Error);
+		break;
+	}
+
+	return S_OK;
 }
 
 HRESULT MediaEngineManager::checkInitialized()

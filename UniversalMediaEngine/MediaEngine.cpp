@@ -6,13 +6,12 @@ using namespace UniversalMediaEngine;
 using namespace Platform;
 using namespace concurrency;
 
-MediaEngine::MediaEngine()
+UniversalMediaEngine::MediaEngine::~MediaEngine()
 {
-}
-
-void MediaEngine::TriggerMediaStateChanged(UniversalMediaEngine::MediaState state)
-{
-	MediaStateChanged(state);
+	if (nullptr != spMediaEngineManager.Get())
+	{
+		spMediaEngineManager->TearDown();
+	}
 }
 
 IAsyncOperation<MediaEngineInitializationResult>^ MediaEngine::InitializeAsync()
@@ -53,6 +52,11 @@ void MediaEngine::Pause()
 	CHECK_INIT(spMediaEngineManager->Pause());
 }
 
+void UniversalMediaEngine::MediaEngine::Stop()
+{
+	CHECK_INIT(spMediaEngineManager->Stop());
+}
+
 double MediaEngine::Volume::get()
 {
 	double volume;
@@ -63,4 +67,9 @@ double MediaEngine::Volume::get()
 void MediaEngine::Volume::set(double value)
 {
 	CHECK_INIT(spMediaEngineManager->SetVolume(value));
+}
+
+void MediaEngine::TriggerMediaStateChanged(UniversalMediaEngine::MediaState state)
+{
+	MediaStateChanged(state);
 }
