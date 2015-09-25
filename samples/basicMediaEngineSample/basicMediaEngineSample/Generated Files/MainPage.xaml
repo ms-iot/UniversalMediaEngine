@@ -1,0 +1,27 @@
+﻿<Page x:ConnectionId='1'
+    x:Class="basicMediaEngineSample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:basicMediaEngineSample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"                     >
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel>
+            <TextBlock FontWeight="Bold" FontSize="25">UniversalMediaEngine</TextBlock>
+            <Grid Height="10"></Grid>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>Current Status:</TextBlock>
+                <TextBlock x:ConnectionId='5' Name="CurrentStatus"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="15" Height="55">
+                <TextBox x:ConnectionId='2' Name="UrlBox" Width="150" Margin="10" PlaceholderText="URL to play"></TextBox>
+                <Button x:ConnectionId='3' Margin="10,0,10,11" VerticalAlignment="Bottom"                     >Play</Button>
+                <Button x:ConnectionId='4' Margin="10"                       >Pause</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
+
