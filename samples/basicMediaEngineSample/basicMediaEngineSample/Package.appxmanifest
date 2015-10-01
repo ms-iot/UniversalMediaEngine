@@ -8,14 +8,14 @@
 
   <Identity
     Name="0344c1e0-c70e-45c3-80e1-5c883a754569"
-    Publisher="CN=bethoma"
+    Publisher="CN=Microsoft Corporation"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="0344c1e0-c70e-45c3-80e1-5c883a754569" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>basicMediaEngineSample</DisplayName>
-    <PublisherDisplayName>bethoma</PublisherDisplayName>
+    <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
