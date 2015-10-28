@@ -2,11 +2,11 @@
 #include "MediaEngineManager.h"
 #include "MediaEngine.h"
 
-using namespace UniversalMediaEngine;
+using namespace Microsoft::Maker::Media::UniversalMediaEngine;
 using namespace Platform;
 using namespace concurrency;
 
-UniversalMediaEngine::MediaEngine::~MediaEngine()
+MediaEngine::~MediaEngine()
 {
 	if (nullptr != spMediaEngineManager.Get())
 	{
@@ -52,7 +52,7 @@ void MediaEngine::Pause()
 	CHECK_INIT(spMediaEngineManager->Pause());
 }
 
-void UniversalMediaEngine::MediaEngine::Stop()
+void MediaEngine::Stop()
 {
 	CHECK_INIT(spMediaEngineManager->Stop());
 }
@@ -69,7 +69,7 @@ void MediaEngine::Volume::set(double value)
 	CHECK_INIT(spMediaEngineManager->SetVolume(value));
 }
 
-void MediaEngine::TriggerMediaStateChanged(UniversalMediaEngine::MediaState state)
+void MediaEngine::TriggerMediaStateChanged(MediaState state)
 {
 	MediaStateChanged(state);
 }

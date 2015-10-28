@@ -2,10 +2,10 @@
 #include "MediaEngine.h"
 #include "MediaEngineManager.h"
 
-using namespace UniversalMediaEngine;
 using namespace Platform;
+using namespace Microsoft::Maker::Media::UniversalMediaEngine;
 
-MediaEngineManager::MediaEngineManager(UniversalMediaEngine::MediaEngine^ mediaEngine)
+MediaEngineManager::MediaEngineManager(MediaEngine^ mediaEngine)
 {
 	mediaEngineComponent = mediaEngine;
 }

@@ -1,13 +1,19 @@
 #pragma once
 
-namespace UniversalMediaEngine
-{
-	public enum class MediaState
-	{
-		Error,
-		Ended,
-		Stopped,
-		Loading,
-		Playing,
-	};
+namespace Microsoft {
+	namespace Maker {
+		namespace Media {
+			namespace UniversalMediaEngine
+			{
+				public enum class MediaState
+				{
+					Error,
+					Ended,
+					Stopped,
+					Loading,
+					Playing,
+				};
+			}
+		}
+	}
 }
