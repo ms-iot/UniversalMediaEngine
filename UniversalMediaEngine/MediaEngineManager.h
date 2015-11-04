@@ -1,8 +1,14 @@
 #pragma once
 
-namespace UniversalMediaEngine
-{
-	partial ref class MediaEngine;
+namespace Microsoft {
+	namespace Maker {
+		namespace Media {
+			namespace UniversalMediaEngine
+			{
+				partial ref class MediaEngine;
+			}
+		}
+	}
 }
 
 class MediaEngineNotify;
@@ -10,7 +16,7 @@ class MediaEngineNotify;
 class MediaEngineManager : public IMFMediaEngineNotify
 {
 public:
-	MediaEngineManager(UniversalMediaEngine::MediaEngine^ mediaEngine);
+	MediaEngineManager(Microsoft::Maker::Media::UniversalMediaEngine::MediaEngine^ mediaEngine);
 
 	HRESULT STDMETHODCALLTYPE QueryInterface(REFIID riid,
 		LPVOID * ppvObj);
@@ -42,7 +48,7 @@ private:
 	bool isInitialized;
 	ComPtr<IMFMediaEngine> spMediaEngine;
 	//ComPtr<MediaEngineNotify> spMediaEngineNotify;
-	UniversalMediaEngine::MediaEngine^ mediaEngineComponent;
+	Microsoft::Maker::Media::UniversalMediaEngine::MediaEngine^ mediaEngineComponent;
 
 	HRESULT checkInitialized();
 };

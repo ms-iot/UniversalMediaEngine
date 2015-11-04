@@ -30,7 +30,7 @@
     <ProjectGuid>{81d46002-ec95-4423-bf6e-dbe82ccd55ca}</ProjectGuid>
     <Keyword>WindowsRuntimeComponent</Keyword>
     <ProjectName>UniversalMediaEngine</ProjectName>
-    <RootNamespace>UniversalMediaEngine</RootNamespace>
+    <RootNamespace>Microsoft.Maker.Media.UniversalMediaEngine</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>
