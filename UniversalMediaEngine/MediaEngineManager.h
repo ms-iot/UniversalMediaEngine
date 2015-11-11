@@ -1,5 +1,7 @@
 #pragma once
 
+using namespace Windows::Storage::Streams;
+
 namespace Microsoft {
 	namespace Maker {
 		namespace Media {
@@ -30,6 +32,8 @@ public:
 
 	HRESULT PlayUrl(BSTR url);
 
+	HRESULT PlayMfByteStream(IMFByteStream* mfByteStream);
+
 	HRESULT Pause();
 
 	HRESULT Stop();
@@ -47,7 +51,6 @@ private:
 	LONG m_cRef;
 	bool isInitialized;
 	ComPtr<IMFMediaEngine> spMediaEngine;
-	//ComPtr<MediaEngineNotify> spMediaEngineNotify;
 	Microsoft::Maker::Media::UniversalMediaEngine::MediaEngine^ mediaEngineComponent;
 
 	HRESULT checkInitialized();
