@@ -30,7 +30,7 @@ MainPage::MainPage()
 
 void basicMediaEngineSample::MainPage::Page_Loaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	m_mediaEngine.MediaStateChanged += ref new UniversalMediaEngine::MediaStateChangedHandler(this, &basicMediaEngineSample::MainPage::OnMediaStateChanged);
+	m_mediaEngine.MediaStateChanged += ref new MediaStateChangedHandler(this, &basicMediaEngineSample::MainPage::OnMediaStateChanged);
 	m_mediaEngine.InitializeAsync();
 }
 
@@ -41,7 +41,7 @@ void basicMediaEngineSample::MainPage::Button_Click(Platform::Object^ sender, Wi
 }
 
 
-void basicMediaEngineSample::MainPage::OnMediaStateChanged(UniversalMediaEngine::MediaState state)
+void basicMediaEngineSample::MainPage::OnMediaStateChanged(MediaState state)
 {
 	Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new DispatchedHandler(
 		[=]()

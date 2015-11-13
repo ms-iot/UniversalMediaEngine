@@ -2,10 +2,8 @@
 
 #include <collection.h>
 #include <ppltasks.h>
-//#include <atlbase.h>
 #include <Winstring.h>
 #include <Unknwn.h>
-//#include <client.h>
 
 #include <Mfapi.h>
 #include <Mfmediaengine.h>

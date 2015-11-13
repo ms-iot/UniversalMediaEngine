@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 using namespace Windows::Foundation;
+using namespace Windows::Storage::Streams;
 
 // Prototype
 class MediaEngineManager;
@@ -35,6 +36,8 @@ namespace Microsoft {
 					/// Plays the media stream at the given URL
 					/// </summary>
 					void Play(Platform::String^ url);
+
+					void PlayStream(IRandomAccessStream^ stream);
 
 					/// <summary>
 					/// Pauses playback

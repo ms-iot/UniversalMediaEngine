@@ -32,6 +32,23 @@ IAsyncOperation<MediaEngineInitializationResult>^ MediaEngine::InitializeAsync()
 	});
 }
 
+void MediaEngine::PlayStream(IRandomAccessStream^ stream)
+{
+	HRESULT hr = E_FAIL;
+	ComPtr<IMFByteStream> spMFByteStream = nullptr;
+	ComPtr<IUnknown> pStreamUnk = reinterpret_cast<IUnknown*>(stream);
+
+	CHR(MFCreateMFByteStreamOnStreamEx(pStreamUnk.Get(), &spMFByteStream));
+	CHR(spMediaEngineManager->PlayMfByteStream(spMFByteStream.Get()));
+
+End:
+
+	if (S_OK != hr)
+		throw ref new Exception(hr, "Invalid Stream");
+
+	return;
+}
+
 void MediaEngine::Play(Platform::String^ url)
 {
 	HRESULT hr = E_FAIL;

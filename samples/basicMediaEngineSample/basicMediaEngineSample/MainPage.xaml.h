@@ -7,6 +7,8 @@
 
 #include "MainPage.g.h"
 
+using namespace Microsoft::Maker::Media::UniversalMediaEngine;
+
 namespace basicMediaEngineSample
 {
 	/// <summary>
@@ -18,11 +20,11 @@ namespace basicMediaEngineSample
 		MainPage();
 
 	private:
-		UniversalMediaEngine::MediaEngine m_mediaEngine;
+		MediaEngine m_mediaEngine;
 
 		void Page_Loaded(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 		void Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
-		void OnMediaStateChanged(UniversalMediaEngine::MediaState state);
+		void OnMediaStateChanged(MediaState state);
 		void Button_Click_1(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e);
 	};
 }
