@@ -135,7 +135,14 @@ HRESULT MediaEngineManager::Pause()
 	HRESULT hr = E_FAIL;
 	CHR(checkInitialized());
 
-	CHR(spMediaEngine->Pause());
+	if (spMediaEngine->IsPaused())
+	{
+		CHR(spMediaEngine->Play());
+	}
+	else
+	{
+		CHR(spMediaEngine->Pause());
+	}
 
 End:
 	return hr;
@@ -146,7 +153,10 @@ HRESULT MediaEngineManager::Stop()
 	HRESULT hr = E_FAIL;
 	CHR(checkInitialized());
 
-	CHR(spMediaEngine->Shutdown());
+	// Stop is a composite of Pause and seek 0
+	// to mirror MediaElement behaviour
+	CHR(spMediaEngine->Pause());
+	CHR(spMediaEngine->SetCurrentTime(0.0))
 
 End:
 	return hr;
@@ -183,6 +193,9 @@ HRESULT MediaEngineManager::EventNotify(DWORD event, DWORD_PTR param1, DWORD par
 	case MF_MEDIA_ENGINE_EVENT_LOADSTART:
 		mediaEngineComponent->TriggerMediaStateChanged(MediaState::Loading);
 		break;
+	case MF_MEDIA_ENGINE_EVENT_PAUSE:
+		mediaEngineComponent->TriggerMediaStateChanged(MediaState::Paused);
+		break;
 	case MF_MEDIA_ENGINE_EVENT_PLAYING:
 		mediaEngineComponent->TriggerMediaStateChanged(MediaState::Playing);
 		break;
@@ -191,6 +204,13 @@ HRESULT MediaEngineManager::EventNotify(DWORD event, DWORD_PTR param1, DWORD par
 		break;
 	case MF_MEDIA_ENGINE_EVENT_ERROR:
 		mediaEngineComponent->TriggerMediaStateChanged(MediaState::Error);
+		break;
+	case MF_MEDIA_ENGINE_EVENT_SEEKED:
+		if (spMediaEngine->IsPaused() &&
+			spMediaEngine->GetCurrentTime() == 0.0)
+		{
+			mediaEngineComponent->TriggerMediaStateChanged(MediaState::Stopped);
+		}
 		break;
 	}
 

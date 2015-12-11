@@ -8,14 +8,30 @@
 
   <Identity
     Name="4474c45b-baf1-4ef5-ae2c-962ca5eafb10"
+<<<<<<< HEAD
     Publisher="CN=Microsoft Corporation"
+=======
+<<<<<<< HEAD
+    Publisher="CN=bethoma"
+=======
+    Publisher="CN=Microsoft Corporation"
+>>>>>>> Tests
+>>>>>>> dev
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="4474c45b-baf1-4ef5-ae2c-962ca5eafb10" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>speechSynthesisSample</DisplayName>
+<<<<<<< HEAD
     <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
+=======
+<<<<<<< HEAD
+    <PublisherDisplayName>bethoma</PublisherDisplayName>
+=======
+    <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
+>>>>>>> Tests
+>>>>>>> dev
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 

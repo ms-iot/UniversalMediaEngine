@@ -107,6 +107,13 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    <None Include="speechSynthesisSample_TemporaryKey.pfx" />
+=======
+>>>>>>> Tests
+>>>>>>> dev
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />
