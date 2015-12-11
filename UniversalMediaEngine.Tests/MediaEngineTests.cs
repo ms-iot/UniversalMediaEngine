@@ -31,15 +31,14 @@ namespace UniversalMediaEngine.Tests
             uint callbackTimeout = 10;
 
             // Act
-            var result = await engineUnderTest.InitializeAsync();
+            Assert.IsTrue(MediaEngineInitializationResult.Success == await engineUnderTest.InitializeAsync()
+                , "Failed to initialize MediaEngine");
 
             engineUnderTest.MediaStateChanged += ((MediaState newState) => 
             {
                 if (MediaState.Playing == newState)
                     callbackOccurred = true;
             });
-
-            Assert.IsTrue(MediaEngineInitializationResult.Success == result);
 
             try
             {
@@ -49,8 +48,8 @@ namespace UniversalMediaEngine.Tests
                 uint counter = 0;
                 while (!callbackOccurred)
                 {
-                    if (counter == callbackTimeout)
-                        Assert.IsFalse(true, "Timed out waiting for callback from mediaengine");
+                    Assert.IsFalse(counter == callbackTimeout,
+                        "Timed out waiting for callback from mediaengine");
 
                     await Task.Delay(100);
 
@@ -83,6 +82,8 @@ namespace UniversalMediaEngine.Tests
                 exceptionThrown = true;
             }
 
+
+            // Assert
             Assert.IsTrue(exceptionThrown);
                 
         }
@@ -96,7 +97,8 @@ namespace UniversalMediaEngine.Tests
             uint callbackTimeout = 10;
 
             // Act
-            var result = await engineUnderTest.InitializeAsync();
+            Assert.IsTrue(MediaEngineInitializationResult.Success == await engineUnderTest.InitializeAsync()
+                , "Failed to initialize MediaEngine");
 
             engineUnderTest.MediaStateChanged += ((MediaState newState) =>
             {
@@ -106,8 +108,6 @@ namespace UniversalMediaEngine.Tests
                     callbackOccurred = true;
             });
 
-            Assert.IsTrue(MediaEngineInitializationResult.Success == result);
-
             try
             {
                 engineUnderTest.Play("");
@@ -116,8 +116,8 @@ namespace UniversalMediaEngine.Tests
                 uint counter = 0;
                 while (!callbackOccurred)
                 {
-                    if (counter == callbackTimeout)
-                        Assert.IsFalse(true, "Timed out waiting for callback from mediaengine");
+                    Assert.IsFalse(counter == callbackTimeout, 
+                        "Timed out waiting for callback from mediaengine");
 
                     await Task.Delay(100);
 
@@ -145,9 +145,8 @@ namespace UniversalMediaEngine.Tests
             StorageFile testFile = await StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///Assets/TestSilence.wav"));
 
             // Act
-            var result = await engineUnderTest.InitializeAsync();
-
-            Assert.IsTrue(MediaEngineInitializationResult.Success == result);
+            Assert.IsTrue(MediaEngineInitializationResult.Success == await engineUnderTest.InitializeAsync()
+                , "Failed to initialize MediaEngine");
 
             engineUnderTest.MediaStateChanged += ((MediaState newState) =>
             {
@@ -164,8 +163,8 @@ namespace UniversalMediaEngine.Tests
                 uint counter = 0;
                 while (!callbackOccurred)
                 {
-                    if (counter == callbackTimeout)
-                        Assert.IsFalse(true, "Timed out waiting for callback from mediaengine");
+                    Assert.IsFalse(counter == callbackTimeout,
+                        "Timed out waiting for callback from mediaengine");
 
                     await Task.Delay(100);
 
@@ -191,9 +190,8 @@ namespace UniversalMediaEngine.Tests
             bool exceptionThrown = false;
 
             // Act
-            var result = await engineUnderTest.InitializeAsync();
-
-            Assert.IsTrue(MediaEngineInitializationResult.Success == result);
+            Assert.IsTrue(MediaEngineInitializationResult.Success == await engineUnderTest.InitializeAsync()
+                , "Failed to initialize MediaEngine");
 
             try
             {
@@ -283,8 +281,8 @@ namespace UniversalMediaEngine.Tests
                 uint counter = 0;
                 while (0 == callbackCount)
                 {
-                    if (counter == callbackTimeout)
-                        Assert.IsFalse(true, "Timed out waiting for callback from mediaengine");
+                    Assert.IsFalse(counter == callbackTimeout,
+                        "Timed out waiting for callback from mediaengine");
 
                     await Task.Delay(100);
 
@@ -296,8 +294,8 @@ namespace UniversalMediaEngine.Tests
                 counter = 0;
                 while (1 == callbackCount)
                 {
-                    if (counter == callbackTimeout)
-                        Assert.IsFalse(true, "Timed out waiting for callback from mediaengine");
+                    Assert.IsFalse(counter == callbackTimeout,
+                        "Timed out waiting for callback from mediaengine");
 
                     await Task.Delay(100);
 
@@ -309,8 +307,8 @@ namespace UniversalMediaEngine.Tests
                 counter = 0;
                 while (2 == callbackCount)
                 {
-                    if (counter == callbackTimeout)
-                        Assert.IsFalse(true, "Timed out waiting for callback from mediaengine");
+                    Assert.IsFalse(counter == callbackTimeout,
+                        "Timed out waiting for callback from mediaengine");
 
                     await Task.Delay(100);
 
@@ -363,9 +361,8 @@ namespace UniversalMediaEngine.Tests
             uint callbackTimeout = 10;
 
             // Act
-            var result = await engineUnderTest.InitializeAsync();
-
-            Assert.IsTrue(MediaEngineInitializationResult.Success == result);
+            Assert.IsTrue(MediaEngineInitializationResult.Success == await engineUnderTest.InitializeAsync()
+                , "Failed to initialize MediaEngine");
 
             engineUnderTest.MediaStateChanged += ((MediaState newState) =>
             {
@@ -397,8 +394,8 @@ namespace UniversalMediaEngine.Tests
                 uint counter = 0;
                 while (0 == callbackCount)
                 {
-                    if (counter == callbackTimeout)
-                        Assert.IsFalse(true, "Timed out waiting for callback from mediaengine");
+                    Assert.IsFalse(counter == callbackTimeout,
+                        "Timed out waiting for callback from mediaengine");
 
                     await Task.Delay(100);
 
@@ -410,8 +407,8 @@ namespace UniversalMediaEngine.Tests
                 counter = 0;
                 while (1 == callbackCount)
                 {
-                    if (counter == callbackTimeout)
-                        Assert.IsFalse(true, "Timed out waiting for callback from mediaengine");
+                    Assert.IsFalse(counter == callbackTimeout,
+                        "Timed out waiting for callback from mediaengine");
 
                     await Task.Delay(100);
 
@@ -460,8 +457,8 @@ namespace UniversalMediaEngine.Tests
             double volume = 0;
 
             // Act
-            var result = await engineUnderTest.InitializeAsync();
-            Assert.IsTrue(MediaEngineInitializationResult.Success == result);
+            Assert.IsTrue(MediaEngineInitializationResult.Success == await engineUnderTest.InitializeAsync()
+                , "Failed to initialize MediaEngine");
 
             try
             {

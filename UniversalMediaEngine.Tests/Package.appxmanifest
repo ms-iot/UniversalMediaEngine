@@ -5,15 +5,13 @@
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
   IgnorableNamespaces="uap mp">
 
-  <Identity Name="0dec6c77-5b50-49a9-9d49-1186904b5df9"
-            Publisher="CN=bethoma"
-            Version="1.0.0.0" />
+  <Identity Name="UniversalMediaEngine.Tests" Publisher="CN=Microsoft Corporation" Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="0dec6c77-5b50-49a9-9d49-1186904b5df9" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>UniversalMediaEngine.Tests</DisplayName>
-    <PublisherDisplayName>bethoma</PublisherDisplayName>
+    <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   
