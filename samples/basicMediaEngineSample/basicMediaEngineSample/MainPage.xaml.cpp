@@ -37,7 +37,7 @@ void basicMediaEngineSample::MainPage::Page_Loaded(Platform::Object^ sender, Win
 
 void basicMediaEngineSample::MainPage::Button_Click(Platform::Object^ sender, Windows::UI::Xaml::RoutedEventArgs^ e)
 {
-	//m_mediaEngine.Play(UrlBox->Text);
+	m_mediaEngine.Play(UrlBox->Text);
 }
 
 
