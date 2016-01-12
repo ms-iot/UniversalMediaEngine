@@ -24,6 +24,7 @@ namespace Microsoft {
 				private:
 					~MediaEngine();
 				public:
+					MediaEngine();
 
 					/// <summary>
 					/// Asynchronously initializes the media engine

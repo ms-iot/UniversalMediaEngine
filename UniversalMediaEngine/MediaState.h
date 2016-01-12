@@ -12,6 +12,7 @@ namespace Microsoft {
 					Stopped,
 					Loading,
 					Playing,
+					Paused
 				};
 			}
 		}

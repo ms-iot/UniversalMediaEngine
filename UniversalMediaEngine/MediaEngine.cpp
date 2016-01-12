@@ -6,6 +6,11 @@ using namespace Microsoft::Maker::Media::UniversalMediaEngine;
 using namespace Platform;
 using namespace concurrency;
 
+MediaEngine::MediaEngine()
+{
+	spMediaEngineManager = new MediaEngineManager(this);
+}
+
 MediaEngine::~MediaEngine()
 {
 	if (nullptr != spMediaEngineManager.Get())
@@ -18,7 +23,6 @@ IAsyncOperation<MediaEngineInitializationResult>^ MediaEngine::InitializeAsync()
 {
 	return create_async([this]
 	{
-		spMediaEngineManager = new MediaEngineManager(this);
 		if (spMediaEngineManager.Get() != nullptr)
 		{
 			HRESULT hr = spMediaEngineManager->Initialize();
