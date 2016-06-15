@@ -15,13 +15,11 @@ namespace speechSynthesisSample
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private MediaEngine mediaEngine;
+        private MediaEngine mediaEngine= new MediaEngine();
 
         public MainPage()
         {
             this.InitializeComponent();
-
-            this.mediaEngine = new MediaEngine();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
