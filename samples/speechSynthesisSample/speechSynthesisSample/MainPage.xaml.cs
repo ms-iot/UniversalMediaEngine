@@ -26,7 +26,7 @@ namespace speechSynthesisSample
         {
             var synth = new Windows.Media.SpeechSynthesis.SpeechSynthesizer();
 
-            SpeechSynthesisStream stream = await synth.SynthesizeTextToStreamAsync("Hello World");
+            var stream = await synth.SynthesizeTextToStreamAsync("Hello World");
 
             mediaEngine.PlayStream(stream);
         }
