@@ -16,3 +16,6 @@ in a Windows IoT Core headless applicaiton (since the XAML MediaElement is not a
 ```
 * The MediaEngine object exposes Play (you pass a valid URL), Pause and Volume set/get as well as a callback that is fired when the state of media playback changes.
  
+***
+
+This project has adopted the [Microsoft Open Source Code of Conduct](http://microsoft.github.io/codeofconduct). For more information see the [Code of Conduct FAQ](http://microsoft.github.io/codeofconduct/faq.md) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
