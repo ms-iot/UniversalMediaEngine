@@ -9,13 +9,11 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="MediaEngineManager.cpp" />
-    <ClCompile Include="MediaEngineNotify.cpp" />
     <ClCompile Include="MediaEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="MediaEngineManager.h" />
-    <ClInclude Include="MediaEngineNotify.h" />
     <ClInclude Include="MediaEngine.h" />
     <ClInclude Include="MediaState.h" />
   </ItemGroup>
